@@ -1,34 +1,33 @@
 # 🛡️ SentinEL: Ultima Intelligence Engine
-
-### Next-Gen Phishing Detection using Explainable AI (XAI)
-**Architects:** Mourya R. Udumula & Jeet Upadhyaya | **Institution:** Indrashil University
+**SecOps Lead:** Jeet Anand Upadhyaya | **Architect:** Mourya Reddy Udumula
 
 ---
 
-## 🚀 Project Overview
-SentinEL Ultima is a **Hybrid Threat Intelligence Engine** designed to detect sophisticated phishing attacks that bypass traditional blacklists. It combines a high-speed **Random Forest** classifier with real-time **Forensic Analysis** (WHOIS, DNS, SSL) to deliver verdicts with <150ms latency.
+## 📦 Operational Triage & Threat Intelligence
+My primary contribution to SentinEL was architecting the **High-Velocity Triage Pipeline** and the **Incident Response Layer**:
 
-The system features **Active Learning**, allowing security analysts to flag false positives and retrain the decision boundary in real-time (Session Scope).
+1. **High-Velocity Ingestion**: Utilized Python `ThreadPoolExecutor` to parallelize the processing of threat feeds, achieving a **5x reduction in batch processing latency**.
+2. **Active Learning Feedback**: Implemented a session-persistent **Manual Override** mechanism, allowing SOC analysts to mitigate False Positives in real-time.
+3. **Robust Ingestion Engine**: Developed a fail-safe CSV parser capable of auto-detecting URL columns in "dirty" or headerless threat intel feeds.
+4. **Actionable XAI**: Integrated an attribution panel that translates ML probability into forensic justifications (e.g., SSL age, TLD reputation) for rapid auditing.
 
-## 🛠️ Technical Stack
-*   **ML Core:** Scikit-Learn (Random Forest, Pipelines), Pandas
-*   **Forensics:** `python-whois`, `dnspython`, SSL Socket Inspection
-*   **Concurrency:** `concurrent.futures` for high-velocity batch triage
-*   **Interface:** Streamlit (Dynamic Dashboard)
+## 📊 Operational Evidence
+![Triage Dashboard](assets/triage_dashboard.png)
+*Figure 1: Automated Triage Dashboard showing concurrent IOC processing and distribution.*
 
-## ⚡ Key Capabilities
-1.  **Hybrid Engine:** Combines Allowlisting (O(1) lookup) with ML Heuristics.
-2.  **Explainable AI (XAI):** Provides human-readable reasons for every verdict (e.g., "High Entropy", "Expired SSL").
-3.  **Resilience:** Self-healing CSV parsing logic for handling dirty IOC feeds.
-4.  **Adversarial Defense:** Detects DGA (Domain Generation Algorithms) via Shannon Entropy analysis.
+![Audit Compliance](assets/audit_compliance.png)
+*Figure 2: System Audit Logs providing a transparent trail of all diagnostic actions.*
 
-## 🔧 Installation & Usage
+## 📂 Responsibility Matrix
+| Module | Lead Author | Primary Responsibility |
+| :--- | :--- | :--- |
+| `app.py` (Tab 2) | **Jeet Upadhyaya** | Triage Pipeline & Operational UX |
+| `app.py` (Logging) | **Jeet Upadhyaya** | Forensic Audit Ledger |
+| `ml_engine.py` | Mourya Udumula | Random Forest & XAI Attribution Core |
+| `feature_extractor.py`| Mourya Udumula | 16-Dimensional Forensic Vectorization |
+
+## 🔧 Installation
 ```bash
-# Clone the repository
 git clone https://github.com/CassianLee14/SentinEL-Adversarial-ML.git
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Launch the Dashboard
 streamlit run app.py
